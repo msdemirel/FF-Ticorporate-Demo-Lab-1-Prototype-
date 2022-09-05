@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     CharacterController characterController;
 
-    public float jumpSpeed = 8.0f;
+    //public float jumpSpeed = 8.0f;
 
     public float gravity = 20.0f;
 
@@ -42,13 +42,14 @@ public class PlayerMovement : MonoBehaviour
 
             moveDirection *= speed;
 
-            if (Input.GetButton("Jump"))
+            /*if (Input.GetButton("Jump"))
 
             {
 
                 moveDirection.y = jumpSpeed;
 
             }
+            */
 
         }
 
