@@ -7,6 +7,7 @@ public class playerController : MonoBehaviour
     public float moveSpeed = 10f;
     public float turnSpeed = 50f;
     Animator anim;
+    private Vector3 moveDirection = Vector3.zero;
 
     // Use this for initialization
     void Start()
@@ -18,15 +19,22 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var horizontal = Input.GetAxis("Horizontal");
+
+        var vertical = Input.GetAxis("Vertical");
+
+        transform.Translate(new Vector3(horizontal, 0, vertical) * (moveSpeed * Time.deltaTime));
 
 
-         if(Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             anim.SetBool("isWalkingBack", true);
             anim.SetBool("isIdle", false);
-            
-            transform.Translate(-Vector3.forward * moveSpeed * Time.deltaTime);
 
+            //transform.Translate(-Vector3.forward * moveSpeed * Time.deltaTime);
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+
+            moveDirection *= moveSpeed;
 
         }
        
@@ -35,9 +43,11 @@ public class playerController : MonoBehaviour
         {
             anim.SetBool("isWalking", true);
             anim.SetBool("isIdle", false);
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+            //transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
 
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
 
+            moveDirection *= moveSpeed;
 
 
         }
@@ -46,18 +56,22 @@ public class playerController : MonoBehaviour
         {
             anim.SetBool("isTurning", true);
             anim.SetBool("isIdle", false);
-            transform.Rotate(0.0f, -1.0f, 0.0f, Space.Self);
+            transform.Rotate(0.0f, -0.3f, 0.0f, Space.Self);
 
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
 
+            moveDirection *= moveSpeed;
 
         }
         else if (Input.GetKey(KeyCode.D))
         {
             anim.SetBool("isTurningRight", true);
             anim.SetBool("isIdle", false);
-            transform.Rotate(0.0f, 1.0f, 0.0f, Space.Self);
+            transform.Rotate(0.0f, 0.3f, 0.0f, Space.Self);
 
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
 
+            moveDirection *= moveSpeed;
 
         }
         else
