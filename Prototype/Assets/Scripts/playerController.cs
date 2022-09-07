@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public float turnSpeed = 50f;
     Animator anim;
     private Vector3 moveDirection = Vector3.zero;
+    public CharacterController controller;
 
     // Use this for initialization
     void Start()
     {
         anim = GetComponent<Animator>();
-
+       
     }
 
     // Update is called once per frame
